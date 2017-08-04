@@ -17,7 +17,6 @@
     <script>
        import Chart form 'xxxx/chart'
 
-       .....
        export default { 
          data(){
             return {
@@ -34,4 +33,5 @@
        }   
     </script> 
 
-注：类型和组件，需要根据你的option来配置，echarts所有的类型和组件，可以参考chart.vue，也可以查看官方：https://github.com/ecomfe/echarts/blob/master/index.js
+注：类型和组件，需要根据你的option来配置，echarts所有的类型和组件，可以参考chart.vue，
+也可以查看官方：https://github.com/ecomfe/echarts/blob/master/index.js
