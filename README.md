@@ -24,8 +24,12 @@
                     async:{ /* 异步数据 */
                         url: 'get data url',
                         cb(echarts, data) { /* 返回echarts 和数据 */
-                            ....do your thing....  
-                            return true;
+                            return new Promise((resolve, reject) => { /* 为了方便其他的异步操作 这里必须return一个promise对象*/
+                               if (data) {
+                                  .....do your thing....
+                                  resolve();
+                               } else reject();
+                            })
                          } 
                      },
                     type: ['line'],  // 类型
@@ -40,5 +44,5 @@
        }   
     </script> 
 
-注：类型和组件，需要根据你的option来配置，echarts所有的类型和组件，可以参考chart.vue，
+注：类型和组件，需要根据你的option来配置，echarts所有的类型和组件，可以参考chart.vue<br/>
 也可以查看官方：https://github.com/ecomfe/echarts/blob/master/index.js
