@@ -16,8 +16,12 @@
        async:{
           url: 'get data url',
           cb(echarts, data) {
-            ....do your thing....  
-            return true;
+            return new Promise((resolve, reject) => {
+                if (data) {
+                  .....do your thing....
+                  resolve();
+                } else reject();
+            })
          } 
        },
        type: ['line'],
@@ -43,10 +47,10 @@
         this.config.component.map((c) => {
           this.addComponent(c)
         })
-        
+
         async ? (() => {
           axios.get(async.url).then((res) => {
-            var re = async.cb(echarts, res.data) 
+            var re = async.cb(echarts, res.data)
             re.then(this.renderChart)
           })
         })() : this.renderChart()
