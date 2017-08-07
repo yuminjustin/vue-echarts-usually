@@ -4,29 +4,54 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import echarts from 'echarts/lib/echarts'
-  /*  这个暂未解决
+  /*
   require('zrender/lib/vml/vml');
   */
 
+
+  /*
+    config:{
+       async:{
+          url: 'get data url',
+          cb(echarts, data) {
+            ....do your thing....  
+            return true;
+         } 
+       },
+       type: ['line'],
+       component: ['title', 'legend', 'grid'],
+       option:配置
+    }
+  */
+
   export default {
-  //  宽度 高度 配置
     props: ['width', 'height', 'config'],
     mounted() {
       this.addDependencies()
     },
     methods: {
       addDependencies() {
+        let {
+          async
+        } = this.config;
+
         this.config.type.map((t) => {
           this.addChart(t)
         })
         this.config.component.map((c) => {
           this.addComponent(c)
         })
-        this.renderChart()
+        
+        async ? (() => {
+          axios.get(async.url).then((res) => {
+            async.cb(echarts, res.data) && this.renderChart()
+          })
+        })() : this.renderChart()
       },
       addChart(t) {
-        // 所有的chart 类型
+
         switch (t) {
           case "line":
             require('echarts/lib/chart/line');
@@ -91,7 +116,6 @@
         }
       },
       addComponent(c) {
-      //所有echart组件
         switch (c) {
           case "title":
             require('echarts/lib/component/title');
@@ -153,7 +177,6 @@
         }
       },
       renderChart() {
-      //绘制
         let myChart = echarts.init(this.$refs.chart);
         myChart.setOption(this.config.option)
       }
