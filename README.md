@@ -45,4 +45,5 @@
     </script> 
 
 注：类型和组件，需要根据你的option来配置，echarts所有的类型和组件，可以参考chart.vue<br/>
-也可以查看官方：https://github.com/ecomfe/echarts/blob/master/index.js
+也可以查看官方：https://github.com/ecomfe/echarts/blob/master/index.js<br/>
+你的实际运用中没有异步的需求，也可以去掉axios的代码
