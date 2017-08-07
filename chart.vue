@@ -46,7 +46,8 @@
         
         async ? (() => {
           axios.get(async.url).then((res) => {
-            async.cb(echarts, res.data) && this.renderChart()
+            var re = async.cb(echarts, res.data) 
+            re.then(this.renderChart)
           })
         })() : this.renderChart()
       },
