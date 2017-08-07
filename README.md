@@ -21,6 +21,13 @@
          data(){
             return {
                 config:{
+                    async:{ /* 异步数据 */
+                        url: 'get data url',
+                        cb(echarts, data) { /* 返回echarts 和数据 */
+                            ....do your thing....  
+                            return true;
+                         } 
+                     },
                     type: ['line'],  // 类型
                     component: ['title', 'legend', 'grid'],  // 组件
                     option: 和往常一样的option配置
