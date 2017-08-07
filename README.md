@@ -21,9 +21,9 @@
          data(){
             return {
                 config:{
-                    async:{ /* 异步数据 */
+                    async:{ /* 异步数据 */
                         url: 'get data url',
-                        cb(echarts, data) { /* 返回echarts 和数据 */
+                        cb(echarts, data) { /* 返回echarts 和数据 */
                             ....do your thing....  
                             return true;
                          } 
